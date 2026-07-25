@@ -1,0 +1,21 @@
+# Render Blueprint — RepairHub frontend (Vite SPA).
+#
+# The rewrite rule is the important part: react-router handles /login,
+# /dashboard, /admin/technicians etc. on the client, so a request that reaches
+# Render's servers for one of those paths has no file to match and returns
+# "Not Found". Sending every unmatched path to index.html lets the router take
+# over. This covers page refreshes, pasted deep links, and the hard redirect in
+# src/api/client.js that fires on a 401.
+#
+# Render does not apply rewrites to paths where a real file exists, so
+# /assets/* and /firebase-messaging-sw.js still serve normally.
+services:
+  - name: repairhub-client
+    type: web
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
