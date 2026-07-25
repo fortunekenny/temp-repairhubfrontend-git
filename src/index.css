@@ -10,11 +10,14 @@ html {
 
 body {
   @apply bg-slate-50 text-slate-900 antialiased;
+  /* Long unbroken strings (emails, URLs, addresses) must not widen the page on phones. */
+  overflow-wrap: break-word;
 }
 
 /* Shared form styles */
 @utility input {
-  @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 disabled:cursor-not-allowed disabled:bg-slate-100;
+  /* text-base on phones: iOS Safari auto-zooms into any field smaller than 16px. */
+  @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-base text-slate-900 placeholder-slate-400 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 disabled:cursor-not-allowed disabled:bg-slate-100 sm:text-sm;
 }
 
 @utility label {
@@ -22,7 +25,8 @@ body {
 }
 
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+  /* min-h-11 gives every button a 44px touch target on phones; desktop keeps its tighter sizing. */
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 sm:min-h-0;
 }
 
 @utility btn-primary {

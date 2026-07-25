@@ -53,12 +53,12 @@ export default function Register() {
   );
 
   return (
-    <div className="mx-auto max-w-md pt-8">
-      <div className="card p-8">
+    <div className="mx-auto max-w-md pt-4 sm:pt-8">
+      <div className="card p-6 sm:p-8">
         <h1 className="text-2xl font-bold text-slate-900">Create your account</h1>
         <p className="mt-1 text-sm text-slate-500">Join Nigeria's trusted repair marketplace.</p>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <div className="flex gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row">
             {roleBtn('customer', User, 'I need repairs', 'Request quotes from verified technicians')}
             {roleBtn('technician', Wrench, "I'm a technician", 'Get verified and earn from repair jobs')}
           </div>

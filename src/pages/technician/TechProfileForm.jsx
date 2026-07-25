@@ -134,7 +134,7 @@ export default function TechProfileForm() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="card space-y-5 p-6 sm:p-8">
+      <form onSubmit={handleSubmit} className="card space-y-5 p-5 sm:p-8">
         <div>
           <span className="label">Service categories</span>
           <div className="flex flex-wrap gap-2">

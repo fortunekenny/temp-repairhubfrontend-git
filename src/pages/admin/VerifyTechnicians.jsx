@@ -47,7 +47,7 @@ export default function VerifyTechnicians() {
         subtitle="Cross-check identity documents and bank account names before approving."
       />
 
-      <div className="mb-4 flex gap-2">
+      <div className="mb-4 flex flex-wrap gap-2">
         {TABS.map((t) => (
           <button
             key={t}
@@ -72,7 +72,7 @@ export default function VerifyTechnicians() {
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="min-w-0">
                   <p className="font-semibold text-slate-900">{t.name}</p>
-                  <p className="text-sm text-slate-500">{t.email}{t.phone ? ` · ${t.phone}` : ''}</p>
+                  <p className="break-all text-sm text-slate-500">{t.email}{t.phone ? ` · ${t.phone}` : ''}</p>
                   <div className="mt-1">
                     <RatingStars value={t.rating_avg} count={t.rating_count} />
                   </div>

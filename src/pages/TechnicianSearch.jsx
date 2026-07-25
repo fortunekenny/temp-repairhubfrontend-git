@@ -72,8 +72,8 @@ export default function TechnicianSearch() {
       />
 
       {/* Filters */}
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row">
-        <div className="relative flex-1">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="relative sm:flex-1">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <input
             className="input !pl-9"
@@ -83,28 +83,31 @@ export default function TechnicianSearch() {
             onKeyDown={(e) => e.key === 'Enter' && search()}
           />
         </div>
-        <select
-          className="input sm:w-56"
-          value={category}
-          onChange={(e) => {
-            const next = new URLSearchParams(params);
-            e.target.value ? next.set('category', e.target.value) : next.delete('category');
-            setParams(next);
-          }}
-        >
-          <option value="">All categories</option>
-          {categories.map((c) => (
-            <option key={c.id} value={c.slug}>
-              {c.name}
-            </option>
-          ))}
-        </select>
-        <button onClick={useMyLocation} className="btn-secondary" title="Use my precise location">
-          <LocateFixed className="h-4 w-4" /> Near me
-        </button>
-        <button onClick={search} className="btn-primary">
-          Search
-        </button>
+        {/* On phones the filter row keeps select + buttons side by side instead of four stacked bars. */}
+        <div className="flex gap-2 sm:contents">
+          <select
+            className="input min-w-0 flex-1 sm:w-56 sm:flex-none"
+            value={category}
+            onChange={(e) => {
+              const next = new URLSearchParams(params);
+              e.target.value ? next.set('category', e.target.value) : next.delete('category');
+              setParams(next);
+            }}
+          >
+            <option value="">All categories</option>
+            {categories.map((c) => (
+              <option key={c.id} value={c.slug}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+          <button onClick={useMyLocation} className="btn-secondary shrink-0 !px-3" title="Use my precise location">
+            <LocateFixed className="h-4 w-4" /> <span className="hidden sm:inline">Near me</span>
+          </button>
+          <button onClick={search} className="btn-primary shrink-0">
+            Search
+          </button>
+        </div>
       </div>
 
       {loading ? (
@@ -144,12 +147,12 @@ export default function TechnicianSearch() {
                   <span className="text-xs text-slate-400">+{t.categories.length - 3} more</span>
                 )}
               </div>
-              <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3 text-sm">
-                <span className="flex items-center gap-1 text-slate-500">
-                  <MapPin className="h-3.5 w-3.5" /> {t.address || 'Nigeria'}
+              <div className="mt-3 flex items-center justify-between gap-2 border-t border-slate-100 pt-3 text-sm">
+                <span className="flex min-w-0 items-center gap-1 text-slate-500">
+                  <MapPin className="h-3.5 w-3.5 shrink-0" /> <span className="truncate">{t.address || 'Nigeria'}</span>
                 </span>
                 {t.base_fee != null && Number(t.base_fee) > 0 && (
-                  <span className="font-medium text-slate-700">from {naira(t.base_fee)}</span>
+                  <span className="shrink-0 whitespace-nowrap font-medium text-slate-700">from {naira(t.base_fee)}</span>
                 )}
               </div>
             </Link>

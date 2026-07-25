@@ -15,8 +15,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <App />
           <Toaster
             position="top-right"
+            // Clear the 4rem sticky header, and never let a long message widen a phone screen.
+            containerStyle={{ top: 72 }}
             toastOptions={{
-              style: { fontSize: '14px' },
+              style: { fontSize: '14px', maxWidth: 'calc(100vw - 2rem)' },
               success: { iconTheme: { primary: '#059669', secondary: '#fff' } },
             }}
           />

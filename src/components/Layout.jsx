@@ -114,7 +114,7 @@ export default function Layout() {
         </div>
 
         {mobileOpen && (
-          <nav className="border-t border-slate-200 bg-white px-4 py-3 md:hidden">
+          <nav className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-slate-200 bg-white px-4 py-3 md:hidden">
             <div className="flex flex-col gap-1">
               {links.map((l) => (
                 <NavLink key={l.to} to={l.to} className={linkCls} onClick={() => setMobileOpen(false)}>
@@ -140,7 +140,7 @@ export default function Layout() {
         )}
       </header>
 
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6">
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
         <Outlet />
       </main>
 

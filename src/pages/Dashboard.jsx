@@ -17,12 +17,12 @@ function StatCard({ icon: Icon, label, value, to, tone = 'blue' }) {
     violet: 'bg-violet-50 text-violet-600',
   };
   const body = (
-    <div className="card flex items-center gap-4 p-5 transition hover:shadow-md">
+    <div className="card flex items-center gap-4 p-4 transition hover:shadow-md sm:p-5">
       <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg ${tones[tone]}`}>
         <Icon className="h-5 w-5" />
       </span>
-      <div>
-        <p className="text-2xl font-bold text-slate-900">{value}</p>
+      <div className="min-w-0">
+        <p className="text-xl font-bold leading-tight text-slate-900 sm:text-2xl">{value}</p>
         <p className="text-sm text-slate-500">{label}</p>
       </div>
     </div>

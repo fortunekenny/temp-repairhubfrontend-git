@@ -72,7 +72,7 @@ export default function NewRequest() {
         subtitle="Describe the problem — verified technicians near you will send quotations."
       />
 
-      <form onSubmit={handleSubmit} className="card space-y-5 p-6 sm:p-8">
+      <form onSubmit={handleSubmit} className="card space-y-5 p-5 sm:p-8">
         <div>
           <label className="label" htmlFor="category">What needs repair?</label>
           <select
@@ -118,7 +118,7 @@ export default function NewRequest() {
 
         <div>
           <label className="label" htmlFor="address">Your location</label>
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-2 sm:flex-row">
             <input
               id="address"
               className="input"

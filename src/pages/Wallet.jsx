@@ -81,11 +81,11 @@ export default function Wallet() {
     <div className="mx-auto max-w-2xl">
       <PageHeader title="Wallet" subtitle={isTech ? 'Your repair earnings and payouts.' : 'Your wallet activity.'} />
 
-      <div className="card bg-gradient-to-br from-blue-600 to-blue-800 p-6 text-white">
+      <div className="card bg-gradient-to-br from-blue-600 to-blue-800 p-5 text-white sm:p-6">
         <p className="flex items-center gap-2 text-sm text-blue-100">
           <WalletIcon className="h-4 w-4" /> Available balance
         </p>
-        <p className="mt-1 text-4xl font-extrabold">{naira(wallet.balance)}</p>
+        <p className="mt-1 text-3xl font-extrabold break-words sm:text-4xl">{naira(wallet.balance)}</p>
         {isTech && (
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <button
@@ -95,8 +95,8 @@ export default function Wallet() {
               <Banknote className="h-4 w-4" /> Withdraw to bank
             </button>
             {hasBank ? (
-              <span className="flex items-center gap-1.5 text-sm text-blue-100">
-                <BadgeCheck className="h-4 w-4" /> {profile.account_name} · ****{profile.account_number.slice(-4)}
+              <span className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-blue-100">
+                <BadgeCheck className="h-4 w-4 shrink-0" /> {profile.account_name} · ****{profile.account_number.slice(-4)}
                 <button onClick={openBankModal} className="underline decoration-blue-300 underline-offset-2 hover:text-white">
                   change
                 </button>

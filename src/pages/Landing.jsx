@@ -35,22 +35,22 @@ export default function Landing() {
   }, []);
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-14 sm:space-y-20">
       {/* Hero */}
-      <section className="grid items-center gap-10 pt-6 lg:grid-cols-2">
+      <section className="grid items-center gap-8 pt-2 sm:gap-10 sm:pt-6 lg:grid-cols-2">
         <div>
           <p className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 ring-1 ring-inset ring-blue-600/20">
-            <ShieldCheck className="h-3.5 w-3.5" /> Nigeria's trusted repair marketplace
+            <ShieldCheck className="h-3.5 w-3.5 shrink-0" /> Nigeria's trusted repair marketplace
           </p>
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             Repair it, don't <span className="text-blue-600">replace it.</span>
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-slate-600">
+          <p className="mt-4 max-w-xl text-base text-slate-600 sm:text-lg">
             RepairHub connects you with verified repair technicians for phones, laptops, appliances,
             furniture and more. Compare quotes, book with confidence, track every step, and pay
             securely — only when the job is done.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {user ? (
               <Link to="/dashboard" className="btn-primary !px-6 !py-3 text-base">
                 Go to dashboard <ArrowRight className="h-4 w-4" />
@@ -67,7 +67,7 @@ export default function Landing() {
             )}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid gap-4 sm:grid-cols-2">
           {TRUST.map(({ icon: Icon, title, text }) => (
             <div key={title} className="card p-5">
               <Icon className="mb-3 h-7 w-7 text-blue-600" />
@@ -81,9 +81,9 @@ export default function Landing() {
       {/* Categories */}
       {categories.length > 0 && (
         <section>
-          <h2 className="mb-2 text-center text-2xl font-bold text-slate-900">What needs fixing?</h2>
-          <p className="mb-8 text-center text-slate-500">From cracked screens to leaky pipes — we cover it.</p>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <h2 className="mb-2 text-center text-xl font-bold text-slate-900 sm:text-2xl">What needs fixing?</h2>
+          <p className="mb-6 text-center text-sm text-slate-500 sm:mb-8 sm:text-base">From cracked screens to leaky pipes — we cover it.</p>
+          <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
             {categories.map((c) => {
               const Icon = CATEGORY_ICONS[c.slug] || Wrench;
               return (
@@ -95,7 +95,7 @@ export default function Landing() {
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <span className="text-sm font-medium text-slate-800">{c.name}</span>
+                  <span className="min-w-0 text-sm font-medium text-slate-800">{c.name}</span>
                 </Link>
               );
             })}
@@ -104,8 +104,8 @@ export default function Landing() {
       )}
 
       {/* How it works */}
-      <section className="rounded-2xl bg-slate-900 px-6 py-12 text-white sm:px-10">
-        <h2 className="mb-10 text-center text-2xl font-bold">How RepairHub works</h2>
+      <section className="rounded-2xl bg-slate-900 px-5 py-10 text-white sm:px-10 sm:py-12">
+        <h2 className="mb-8 text-center text-xl font-bold sm:mb-10 sm:text-2xl">How RepairHub works</h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s) => (
             <div key={s.n}>
@@ -120,9 +120,9 @@ export default function Landing() {
       </section>
 
       {/* Technician CTA */}
-      <section className="card flex flex-col items-center gap-4 p-10 text-center">
-        <h2 className="text-2xl font-bold text-slate-900">Are you a skilled technician?</h2>
-        <p className="max-w-2xl text-slate-600">
+      <section className="card flex flex-col items-center gap-4 p-6 text-center sm:p-10">
+        <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">Are you a skilled technician?</h2>
+        <p className="max-w-2xl text-sm text-slate-600 sm:text-base">
           Stop relying on word-of-mouth. Get verified, receive repair requests from customers near
           you, quote your own prices, and get paid straight to your wallet with instant payouts to
           your bank account.

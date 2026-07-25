@@ -26,8 +26,8 @@ export default function Login() {
   }
 
   return (
-    <div className="mx-auto max-w-md pt-8">
-      <div className="card p-8">
+    <div className="mx-auto max-w-md pt-4 sm:pt-8">
+      <div className="card p-6 sm:p-8">
         <h1 className="text-2xl font-bold text-slate-900">Log in</h1>
         <p className="mt-1 text-sm text-slate-500">Welcome back to RepairHub.</p>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">

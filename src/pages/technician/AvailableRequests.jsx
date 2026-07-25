@@ -105,10 +105,10 @@ export default function AvailableRequests() {
                 </div>
               )}
               <div className="mt-auto flex items-center justify-between gap-2 border-t border-slate-100 pt-3">
-                <span className="flex items-center gap-1 text-xs text-slate-500">
-                  <MapPin className="h-3.5 w-3.5" /> {r.address || 'No address'}
+                <span className="flex min-w-0 items-center gap-1 text-xs text-slate-500">
+                  <MapPin className="h-3.5 w-3.5 shrink-0" /> <span className="truncate">{r.address || 'No address'}</span>
                 </span>
-                <button onClick={() => setQuoting(r)} className="btn-primary !px-3 !py-1.5 text-xs">
+                <button onClick={() => setQuoting(r)} className="btn-primary shrink-0 !px-3 !py-1.5 text-xs">
                   Send quotation
                 </button>
               </div>
