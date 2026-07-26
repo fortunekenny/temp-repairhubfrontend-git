@@ -9,8 +9,12 @@
 #
 # Render does not apply rewrites to paths where a real file exists, so
 # /assets/* and /firebase-messaging-sw.js still serve normally.
+#
+# NOTE: Render only reads this file for Blueprint-managed services. The live site
+# was created manually, so the rewrite below must also be set in the dashboard
+# under Redirects/Rewrites. See "Deployment (Render)" in README.md.
 services:
-  - name: repairhub-client
+  - name: temp-repairhubfrontend
     type: web
     runtime: static
     buildCommand: npm ci && npm run build

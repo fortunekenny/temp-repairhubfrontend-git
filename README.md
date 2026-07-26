@@ -65,6 +65,51 @@ Seeded admin login: `admin@repairhub.ng` / `Admin123!`
 | Realtime | socket.io-client |
 | Icons / toasts | lucide-react, react-hot-toast |
 
+## Deployment (Render)
+
+Live: <https://temp-repairhubfrontend.onrender.com>
+
+| Setting | Value |
+|---|---|
+| Type | Static Site |
+| Build command | `npm ci && npm run build` |
+| Publish directory | `dist` |
+| Env vars | every `VITE_*` key from `.env.example` (Vite inlines these at **build** time — changing one requires a redeploy, not just a restart) |
+
+### The SPA rewrite rule is required
+
+This app uses `BrowserRouter`, so `/login`, `/dashboard`, `/admin/technicians` etc. exist
+only in the client-side router — there is no file at those paths in `dist`. A static host
+asked for one returns its own 404, so **the landing page works but refreshing or deep-linking
+any other page returns "Not Found"** until an unmatched-path rewrite is configured:
+
+| Field | Value |
+|---|---|
+| Source | `/*` |
+| Destination | `/index.html` |
+| Action | **Rewrite** |
+
+Two things matter here:
+
+- It must be **Rewrite**, not Redirect. A redirect changes the URL in the address bar, which
+  defeats deep links and breaks the 401 hard-redirect in `src/api/client.js`.
+- Keep it as the **last** rule, since rules are evaluated top-down.
+
+Real files still win over the rewrite, so `/assets/*` and `/firebase-messaging-sw.js`
+keep serving normally.
+
+**Where to configure it.** `render.yaml` in this repo declares the rule, but Render only reads
+that file for **Blueprint-managed** services. The live site was created manually via
+*New → Static Site*, so `render.yaml` is ignored and the rule must be set in the dashboard:
+
+> Render dashboard → the static site → **Redirects/Rewrites** → **Add Rule** → fill in the
+> table above → Save.
+
+If the service is ever recreated, set this rule again — it is the single most common cause of
+a "works on the landing page, 404s everywhere else" report. To make `render.yaml` authoritative
+instead, attach the repo as a Blueprint; note the service name in `render.yaml` must match the
+existing service or the sync creates a second one alongside it.
+
 ## Project structure
 
 ```text
