@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import Protected from './components/Protected.jsx';
 
@@ -12,6 +12,7 @@ import Notifications from './pages/Notifications.jsx';
 import BookingsList from './pages/BookingsList.jsx';
 import BookingDetail from './pages/BookingDetail.jsx';
 import Wallet from './pages/Wallet.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 import NewRequest from './pages/customer/NewRequest.jsx';
 import MyRequests from './pages/customer/MyRequests.jsx';
@@ -64,7 +65,7 @@ export default function App() {
           <Route path="/admin/users" element={<Users />} />
         </Route>
 
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
